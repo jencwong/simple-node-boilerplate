@@ -6,7 +6,10 @@
   "scripts": {
     "seedTestData": "rm -f *.test.sqlite3 && sequelize-cli db:migrate && sequelize-cli db:seed:all",
     "test": "NODE_ENV=test npm run seedTestData && npx jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "keywords": [],
   "author": "",
@@ -21,6 +24,7 @@
     "eslint": "^6.8.0",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "concurrently": "^4.0.1"
   }
 }
