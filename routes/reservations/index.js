@@ -1,23 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const { Reservation } = require("../../models");
-const { Index, Reservation } = require("./sequelize");
+
+// const { Index, RSVP } = require("./sequelize");
 
 router.get("/", async (req, res) => {
   res.json(await Reservation.all());
 });
 
+// Post / registration
 router.post("/new", (req, res) => {
   console.log(req.body);
   res.send(
-    `I received your Reservation request. This is what you sent me: ${req.body.post}`
+    `I received your Reservation request. The reservation is under: ${req.body.post}`
   );
 });
 
 // POST /create
 router.post("/create", (req, res) => {
-  const sql = "INSERT INTO Reservations (Name, Spot) VALUES (?, ?)";
-  const reservation = [req.body.Name, req.body.Spot];
+  const sql = "INSERT INTO Reservations (name, slot) VALUES (?, ?)";
+  const reservation = [req.body.name, req.body.slot];
   db.run(sql, reservation, err => {
     // if (err) ...
     res.redirect("/");

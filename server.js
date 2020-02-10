@@ -4,6 +4,7 @@ const path = require("path");
 const port = process.env.PORT || 5000;
 const reservationsRouter = require("./routes/reservations");
 const bodyParser = require("body-parser");
+const sqlite3 = require("sqlite3").verbose();
 
 // // middlewares
 // app.use(express.urlencoded({ extended: true }));
