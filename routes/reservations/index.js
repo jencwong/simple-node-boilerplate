@@ -1,11 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const { Reservation } = require("../../models");
-
-// const { Index, RSVP } = require("./sequelize");
+const { checkAvailability } = require("./timeslot");
 
 router.get("/", async (req, res) => {
   res.json(await Reservation.all());
+});
+
+// GET all reservations
+router.get("/", async (req, res) => {
+  // const reservations = await Reservation.all();
+  const reservations = await Reservation.allRaw();
+  // console.log('reservations:', reservations);
+
+  const available = checkAvailability(reservations);
+
+  res.json({
+    booked: reservations,
+    available
+  });
 });
 
 // Post / registration
@@ -16,14 +29,14 @@ router.post("/new", (req, res) => {
   );
 });
 
-// POST /create
-router.post("/create", (req, res) => {
-  const sql = "INSERT INTO Reservations (name, slot) VALUES (?, ?)";
-  const reservation = [req.body.name, req.body.slot];
-  db.run(sql, reservation, err => {
-    // if (err) ...
-    res.redirect("/");
+// POST a reservation for a time
+router.post("/create", async (req, res) => {
+  const { name, slot } = req.body;
+  const reservation = await Reservation.add({
+    name,
+    slot
   });
+  res.json(reservation);
 });
 
 module.exports = router;
