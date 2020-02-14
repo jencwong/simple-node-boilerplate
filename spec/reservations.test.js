@@ -38,6 +38,6 @@ test("should return correct number of tables in subsequent timeslots given curre
   const available = checkAvailability(testBookedReservations);
 
   expect(available["13:00"]).toBe(10);
-  expect(available["13:30"]).toBe(8);
-  expect(available["14:00"]).toBe(9);
+  expect(available["13:30"]).toBe(10);
+  expect(available["14:00"]).toBe(10);
 });
