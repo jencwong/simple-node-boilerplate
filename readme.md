@@ -48,3 +48,5 @@ The Reservation class in this example allows you to define instance methods and 
 
 For an application of this complexity ensuring that database operations through models work well is important. Models are mostly your own code.
 
+![Node.js CI](https://github.com/jencwong/simple-node-boilerplate/workflows/Node.js%20CI/badge.svg)
+
