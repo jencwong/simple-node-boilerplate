@@ -31,13 +31,13 @@ const testBookedReservations = [
 test("should return correct number of available tables given current booked reservations", () => {
   const available = checkAvailability(testBookedReservations);
 
-  expect(available["13:00"]).toBe(9);
+  expect(available["13:00"]).toBe(10);
 });
 
 test("should return correct number of tables in subsequent timeslots given current booked reservations", () => {
   const available = checkAvailability(testBookedReservations);
 
-  expect(available["13:00"]).toBe(9);
-  expect(available["13:30"]).toBe(8);
-  expect(available["14:00"]).toBe(9);
+  expect(available["13:00"]).toBe(10);
+  expect(available["13:30"]).toBe(10);
+  expect(available["14:00"]).toBe(10);
 });

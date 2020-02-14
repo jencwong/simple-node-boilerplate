@@ -4,12 +4,15 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "dev": "nodemon",
+    "migrate": "sequelize-cli db:migrate",
+    "nukedb": "rm -f *.sqlite3",
+    "reset": "npm run nukedb && npm run setup && npm run dev",
+    "seed": "npx sequelize-cli db:seed:all",
     "seedTestData": "rm -f *.test.sqlite3 && sequelize-cli db:migrate && sequelize-cli db:seed:all",
+    "setup": "npm run migrate && npm run seed",
     "test": "NODE_ENV=test npm run seedTestData && npx jest",
-    "lint": "eslint .",
-    "client": "cd client && yarn start",
-    "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
