@@ -37,6 +37,7 @@ router.post("/create", async (req, res) => {
     slot
   });
   res.json(reservation);
+  console.log(reservation);
 });
 
 module.exports = router;
